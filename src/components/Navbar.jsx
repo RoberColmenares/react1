@@ -6,6 +6,7 @@ import {faUnlock} from '@fortawesome/free-solid-svg-icons'
 
 
 
+
 const Navbar = () => {
   const total = 25000;
   const token = false;
@@ -15,13 +16,17 @@ const Navbar = () => {
       
     <>
     
+  
+   
    
     <div className='contenedor d'>
       <div className='barra'>
           <p>!Pizzeria Mamma Mia¡</p>
           <button><FontAwesomeIcon icon={faPizzaSlice}/> Home</button>
           <button><FontAwesomeIcon icon={faLock}/> Login</button>
-          <button> <FontAwesomeIcon icon={faUnlock}/> Register</button>
+          <button><FontAwesomeIcon icon={faUnlock}/> Registro</button>
+       
+
           
       </div>
       <div className='carrito'>
