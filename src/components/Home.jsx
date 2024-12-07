@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CardPizza from './CardPizza';  
-import { pizzas } from './pizzas.js';
+
 
 const Home = () => {
+
+  const [pizzas, setPizzas] = useState([]);
+
+  useEffect(() => {
+    async function consumo() {
+      try {
+        const res = await fetch("http://localhost:5000/api/pizzas");
+        const data = await res.json();
+        setPizzas(data); // `data` es el array completo
+      } catch (error) {
+        console.error("Error al consumir la API:", error);
+      }
+    }
+
+    consumo();
+  }, []);
+
+
+
+
   return (
     <div className='contenedor-cartas'>
       {pizzas.map((pizza) => (

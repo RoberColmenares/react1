@@ -12,6 +12,7 @@ import Cart from './components/Cart.jsx';
 
 
 
+
 function App() {
 
   return (
@@ -19,16 +20,14 @@ function App() {
      
     
     <Navbar/>
-      
-      
-      <Header/>
+    
+    <Header/>
+    <Home/>
+    {/* <Login /> */} 
+    {/* <Registro /> */} 
+    {/* <Cart /> */}
+    <Footer/>
      
-       {/* <Home/>*/}
-      <Cart/>
-     {/*<Login/> */}
-      {/*<Registro/> */}
-      {/*<Home/> */}
-      <Footer/>
     
      
     </>
