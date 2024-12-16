@@ -10,22 +10,22 @@ const CardPizza = (props) => {
         <Card.Img variant="top" src={props.imagen} alt={props.nombre} />
         <Card.Body>
           <Card.Title>{props.nombre}</Card.Title>
-          <Card.Text>{props.descripcion}</Card.Text>
+          <div>{props.descripcion}</div> 
           <hr />
-          <Card.Text>
-            <p className='text-center'>
+          <div>
+            <div className='text-center'>
               <FontAwesomeIcon icon={faPizzaSlice} /> Ingredientes:
-            </p>
+            </div>
             <ul>
               {props.ingredientes.map((ingredient, index) => (
                 <li key={index}>{ingredient}</li>
               ))}
             </ul>
-          </Card.Text>
+          </div>
           <hr />
-          <Card.Text>
-            <p>Precio: ${props.precio}</p>
-          </Card.Text>
+          <div>
+            <div>Precio: ${props.precio}</div>
+          </div>
           <div className='d-flex justify-content-around'>
             <Button variant="light" style={{ border: '2px solid black' }}>Ver más</Button>
             <Button variant="secondary">Añadir</Button>
