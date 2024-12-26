@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import CardPizza from './CardPizza';  
-
+import CardPizza from './CardPizza';
 
 const Home = () => {
-
   const [pizzas, setPizzas] = useState([]);
 
   useEffect(() => {
@@ -20,19 +18,17 @@ const Home = () => {
     consumo();
   }, []);
 
-
-
-
   return (
     <div className='contenedor-cartas'>
       {pizzas.map((pizza) => (
         <CardPizza
-          key={pizza.id}  
-          imagen={pizza.img}   
-          nombre={pizza.name}  
+          key={pizza.id}
+          id={pizza.id}          // Asegúrate de pasar el id
+          imagen={pizza.img}      // Asegúrate de pasar la imagen
+          nombre={pizza.name}     // Asegúrate de pasar el nombre
           descripcion={pizza.desc}
-          ingredientes={pizza.ingredients}  
-          precio={pizza.price}  
+          ingredientes={pizza.ingredients}
+          precio={pizza.price}    // Asegúrate de pasar el precio
         />
       ))}
     </div>

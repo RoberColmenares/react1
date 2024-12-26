@@ -1,16 +1,18 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCartShopping, faLock, faPizzaSlice} from '@fortawesome/free-solid-svg-icons'
 import {faUnlock} from '@fortawesome/free-solid-svg-icons'
+import React, { useContext } from 'react'; // Asegúrate de importar 'useContext'
+import { Contextcart } from "../context/Contexcart.jsx"; // Asegúrate de la ruta correcta
+
 
 
 
 
 
 const Navbar = () => {
-  const total = 25000;
-  const token = false;
+  const { total } = useContext(Contextcart);
+  
 
   return (
    

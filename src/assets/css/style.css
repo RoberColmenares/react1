@@ -98,12 +98,7 @@
     width: 100%;
 }
 
-.caja-carrito{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 2%;
-    align-items: center;
-}
+
 .caja-carrito button{
   margin: 1rem;
     
@@ -120,11 +115,20 @@
 }
 
 
+.caja-carrito{
+  display: flex;
+  margin-top: 6%;
+  border: solid black 1px;
+  background-color: rgb(221, 221, 177);
+  align-items: center;
+}
+
 
  .todo{
     display: flex;
     flex-direction: column;
     align-items: center;
+  
  }
 
  .error{
