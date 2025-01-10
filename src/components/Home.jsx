@@ -1,36 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import CardPizza from './CardPizza';
+import { Contextcart } from '../context/Contexcart';
 
 const Home = () => {
-  const [pizzas, setPizzas] = useState([]);
+  const { pizzas } = useContext(Contextcart);
 
-  useEffect(() => {
-    async function consumo() {
-      try {
-        const res = await fetch("http://localhost:5000/api/pizzas");
-        const data = await res.json();
-        setPizzas(data); // `data` es el array completo
-      } catch (error) {
-        console.error("Error al consumir la API:", error);
-      }
-    }
-
-    consumo();
-  }, []);
+  // Verificación si no hay pizzas
+  if (!pizzas || pizzas.length === 0) {
+    return <p>No hay pizzas disponibles.</p>;
+  }
 
   return (
-    <div className='contenedor-cartas'>
-      {pizzas.map((pizza) => (
-        <CardPizza
-          key={pizza.id}
-          id={pizza.id}          // Asegúrate de pasar el id
-          imagen={pizza.img}      // Asegúrate de pasar la imagen
-          nombre={pizza.name}     // Asegúrate de pasar el nombre
-          descripcion={pizza.desc}
-          ingredientes={pizza.ingredients}
-          precio={pizza.price}    // Asegúrate de pasar el precio
-        />
-      ))}
+    <div className="contenedor-pizzas">
+      <h1>Deliciosas Pizzas</h1>
+      <div className="pizza-lista">
+        {pizzas.map((pizza) => (
+          <CardPizza
+            key={pizza.id}
+            id={pizza.id}
+            imagen={pizza.img}
+            nombre={pizza.name}
+            descripcion={pizza.desc}
+            ingredientes={pizza.ingredients}
+            precio={pizza.price}
+          />
+        ))}
+      </div>
     </div>
   );
 };

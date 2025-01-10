@@ -1,67 +1,76 @@
 import React, { useContext } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPizzaSlice } from '@fortawesome/free-solid-svg-icons';
-import { Contextcart } from "../context/Contexcart"; // Asegúrate de la ruta correcta
+import { Contextcart } from "../context/Contexcart"; // Importa el contexto
 
-const CardPizza = (props) => {
-  const { pizzasCarrito, setPizzasCarrito } = useContext(Contextcart); // Accedemos al contexto
+const CardPizza = ({ id, imagen, nombre, descripcion, ingredientes, precio }) => {
+  const { pizzasCarrito, setPizzasCarrito, pizzas } = useContext(Contextcart); // Usamos el contexto
+  const navigate = useNavigate();
+
+  // Encontrar la pizza en el contexto usando el ID
+  const pizza = pizzas.find((pizza) => pizza.id === id);
+
+  // Si no se encuentra la pizza, podemos mostrar un mensaje o retornar null
+  if (!pizza) {
+    return <p>Pizza no encontrada.</p>;
+  }
 
   // Función para agregar la pizza al carrito
   const handleAgregar = () => {
     const nuevaPizza = {
-      id: props.id,           // Asegúrate de que 'id' esté disponible
-      nombre: props.nombre,
-      precio: props.precio,    // Asegúrate de que 'precio' esté disponible
-      imagen: props.imagen,    // Asegúrate de que 'imagen' esté disponible
-      ingredientes: props.ingredientes,
+      id: pizza.id,
+      nombre: pizza.name,
+      precio: pizza.price,
+      imagen: pizza.img,
+      ingredientes: pizza.ingredients,
       count: 1,
     };
 
     // Verificamos si la pizza ya existe en el carrito
-    const pizzaExistente = pizzasCarrito.find(pizza => pizza.id === props.id); // Comparar por id
+    const pizzaExistente = pizzasCarrito.find((p) => p.id === pizza.id);
 
     if (pizzaExistente) {
-      // Si la pizza ya está en el carrito, incrementamos su cantidad
-      const pizzasActualizadas = pizzasCarrito.map(pizza =>
-        pizza.id === props.id ? { ...pizza, count: pizza.count + 1 } : pizza
+      // Incrementar cantidad
+      const pizzasActualizadas = pizzasCarrito.map((p) =>
+        p.id === pizza.id ? { ...p, count: p.count + 1 } : p
       );
       setPizzasCarrito(pizzasActualizadas);
     } else {
-      // Si la pizza no está en el carrito, la agregamos
+      // Agregar nueva pizza
       setPizzasCarrito([...pizzasCarrito, nuevaPizza]);
     }
   };
 
+  const verDetalle = () => {
+    navigate(`/pizza/${pizza.id}`);
+  };
+
   return (
-    <div className='pizza-card'>
-      <Card style={{ width: '100%' }}>
-        <Card.Img variant="top" src={props.imagen} alt={props.nombre} />
-        <Card.Body>
-          <Card.Title>{props.nombre}</Card.Title>
-          <div>{props.descripcion}</div>
-          <hr />
-          <div>
-            <div className='text-center'>
-              <FontAwesomeIcon icon={faPizzaSlice} /> Ingredientes:
-            </div>
-            <ul>
-              {props.ingredientes.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
-              ))}
-            </ul>
-          </div>
-          <hr />
-          <div>
-            <div>Precio: ${props.precio}</div>
-          </div>
-          <div className='d-flex justify-content-around'>
-            <Button variant="light" style={{ border: '2px solid black' }}>Ver más</Button>
-            <Button variant="secondary" onClick={handleAgregar}>Añadir</Button>
-          </div>
-        </Card.Body>
-      </Card>
-    </div>
+    
+      <div className="card-pizza">
+        <img src={imagen} alt={nombre} />
+        <h2>{nombre}</h2>
+        <div className='descripcion'>
+        <p>{descripcion}</p>
+        </div>
+        
+        <h2>ingredientes</h2>
+        <div>
+        <ul>
+          {ingredientes.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+        </div>
+       
+        <p>Precio: ${precio}</p>
+        <div className="btn-contenedor">
+          <button onClick={verDetalle}>Ver más</button>
+          <button onClick={handleAgregar}>Añadir</button>
+        </div>
+      </div>
+    
   );
 };
 

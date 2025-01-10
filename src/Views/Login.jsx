@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
+import { Contextcart } from '../context/Contexcart';
 const Login = () => {
 
 
-
+/*
    const [email, setEmail] = useState('');
    const [clave, setClave] = useState('');
 
@@ -19,33 +21,25 @@ const Login = () => {
     alert('Bienvenido a Pizza Mamma mia');
   }
 };
+*/
+    const navigate = useNavigate();
+    const { setUser } = useContext(Contextcart)
 
-  
+    const handlerButton = ()=>{
+
+      setUser(true);
+      navigate('/perfil')
+    }
 
 
     return (
         <>
-        <div className='cajaregistro'>
-            <Form >
-                <Form.Group className="mb-3 d-flex flex-column w-100 " controlId="formBasicEmail">
-                    <Form.Label>Ingresa tu Email</Form.Label>
-                    <Form.Control type="email" placeholder="Email"  onChange={(e) => setEmail(e.target.value)}/>
-                    
-                </Form.Group>
+         <div className='login'>
 
-                <Form.Group className="mb-3 d-flex flex-column w-100" controlId="formBasicPassword">
-                    <Form.Label>Ingrese Contraseña</Form.Label>
-                    <Form.Control type="password" placeholder="Contraseña" onChange={(e) => setClave(e.target.value)}/>
-                </Form.Group>
+          <h1>Login</h1>
+          <button onClick={handlerButton}>Accesder al perfil</button>
 
-
-                <Button className=" mb-5 mt-5" variant="primary" type="submit" onClick={boton}>
-                    Submit
-                </Button>
-
-
-                </Form>
-            </div>
+         </div>
         </>
     );
 };

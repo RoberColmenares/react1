@@ -2,8 +2,12 @@ import React from 'react'
 
 const Perfil = () => {
   return (
-    <div>
-        <h1>este es tu perfil</h1>
+    <div className='Profile'>
+        <div>
+        <h1>!Hola este es tu Perfil¡</h1>
+        <br />
+          <h2>Esto es una pagina prueba</h2>
+        </div>
     </div>
   )
 }

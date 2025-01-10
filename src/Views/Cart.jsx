@@ -20,20 +20,27 @@ const Cart = () => {
 
   return (
     <div className="todo">
+      <h2>Carrito</h2>
       {pizzasCarrito.map((pizza, i) => (
         <div className='caja-carrito' key={i}>
           {/* Imagen de la pizza */}
-          <img src={pizza.imagen} width={100} alt={pizza.nombre} />
+          <img src={pizza.imagen} width={200} alt={pizza.nombre} />
           
             {/* Nombre de la pizza */}
-            <p>{pizza.nombre}</p>
+            <div className='name'>
+              <p>{pizza.nombre}</p>
+            </div>
             {/* Precio por pizza */}
-            <p>${pizza.precio}</p>
+            <div className='name'>
+              <p>${pizza.precio}</p>
+            </div>
             
               {/* Botones para agregar o quitar cantidad */}
-              <button onClick={() => handleQuitar(i)}>-</button>
-              <p>{pizza.count}</p>
-              <button onClick={() => handleAgregar(i)}>+</button>
+              <div className='btn'>
+                <button onClick={() => handleQuitar(i)}>-</button>
+                  <p>{pizza.count}</p>
+                <button onClick={() => handleAgregar(i)}>+</button>
+              </div>
             
           
         </div>
@@ -41,7 +48,7 @@ const Cart = () => {
       <hr />
       {/* Total */}
       <h3>Total: ${total}</h3>
-      <button className='btn btn-primary'>Pagar</button>
+      {pizzasCarrito.length > 0 && <button>Pagar</button>}
     </div>
   );
 };

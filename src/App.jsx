@@ -10,25 +10,36 @@ import Login from './Views/Login.jsx';
 import Cart from './Views/Cart.jsx';
 import Perfil from './Views/perfil.jsx';
 import Notfound from './Views/Notfound.jsx';
-import ContextoProvider from './context/Contexcart.jsx';
+import PizzaDetalle from './components/PizzaDetalle.jsx';
+import { useContext } from 'react';
+import { Contextcart } from './context/Contexcart.jsx';
+import Logout from './Views/Logout.jsx';
+
+
 
 const App = () => {
+
+  const { user } = useContext(Contextcart)
   return (
     <>
-
-      <ContextoProvider>
+      
         <Navbar />
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home  />} />
+          <Route path="/pizza/:id" element={<PizzaDetalle />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/perfil" element={<Perfil />} />
-          {/*<Route path="/perfil" element={<Perfil />  />*/}
+          <Route path="/perfil" element={
+            user ?
+            <Perfil></Perfil> :
+            <Login></Login>
+            }/>
           <Route path="/*" element={<Notfound />} />
         </Routes>
-      </ContextoProvider>
+      
       <Footer />
     </>
   );

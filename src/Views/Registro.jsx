@@ -30,7 +30,7 @@ const Registro = () => {
 
     return (
         <>
-        <div className='cajaregistro'>
+        <div className='registro'>
             <Form >
                 <Form.Group className="mb-3 d-flex flex-column w-100 " controlId="formBasicEmail">
                     <Form.Label>Ingresa tu Email</Form.Label>
@@ -50,9 +50,9 @@ const Registro = () => {
 
             
 
-                <Button className=" mb-5 mt-5" variant="primary" type="submit" onClick={boton}>
+                <button type="submit" onClick={boton}>
                     Submit
-                </Button>
+                </button>
 
 
                 </Form>

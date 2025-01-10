@@ -5,9 +5,8 @@ import Titulo from './Titulo'
 const Header = () => {
   return (
     <div className='cabeza'>
-      <div className='titu'>
-      <Titulo></Titulo>
-      </div>
+      <h1>!Pizzeria Mamma Mia¡</h1>
+      <p>!Las mejores pizza que podras encontrar¡</p>
       
     </div>
  
