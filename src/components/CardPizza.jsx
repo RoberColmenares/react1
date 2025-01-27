@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPizzaSlice } from '@fortawesome/free-solid-svg-icons';
 import { Contextcart } from "../context/Contexcart"; // Importa el contexto
 
 const CardPizza = ({ id, imagen, nombre, descripcion, ingredientes, precio }) => {
